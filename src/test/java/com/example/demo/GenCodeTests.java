@@ -53,14 +53,10 @@ class GenCodeTests {
         if (tableNames.size() > 0) {
             tableNames.stream().forEach(tableName -> {
                 // 指定要生成代码的表名
-                if (!StrUtil.startWith(tableName, "User") 
-                    || !StrUtil.startWith(tableName, "user") 
-                    || !StrUtil.startWith(tableName, "Flyway")
-                    || !StrUtil.startWith(tableName, "flyway") 
-                    || !StrUtil.startWith(tableName, "EDict") 
-                    || !StrUtil.startWith(tableName, "eDict")
-                    || !StrUtil.startWith(tableName, "EUpms")
-                    || !StrUtil.startWith(tableName, "eUpms")) {
+                if (!StrUtil.startWithIgnoreCase(tableName, "user") 
+                    && !StrUtil.startWithIgnoreCase(tableName, "flyway") 
+                    && !StrUtil.startWithIgnoreCase(tableName, "e_dict")
+                    && !StrUtil.startWithIgnoreCase(tableName, "e_upms")) {
                     // 生成代码与文档
                     GenCodeUtil.genCode(sqlManager, basePackageName, tableName, genOption);
                 }
